@@ -1,14 +1,15 @@
 import React from "react";
-import CounterContainer from "./components/CounterContainer";
-import TodosContainer from "./components/TodosContainer";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Login from "./Login";
+import Registration from "./Registration";
 
 function App() {
   return (
-    <>
-      <CounterContainer />
-      <hr />
-      <TodosContainer />
-    </>
+    <Switch>
+      <Route path="/auth/login" component={Login} />
+      <Route path="/auth/registration" component={Registration} />
+      <Redirect from="/" to="/auth/login" />
+    </Switch>
   );
 }
 
