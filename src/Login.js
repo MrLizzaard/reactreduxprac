@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ const initialValues = {
 };
 
 const Login = (props) => {
+  const [loading, setLoading] = useState(false);
   const LoginSchema = Yup.object().shape({
     userId: Yup.string() //
       .min(3, "적어도 3자")
@@ -25,9 +26,23 @@ const Login = (props) => {
     initialValues,
     validationSchema: LoginSchema,
     onSubmit: (values, { setSubmitting }) => {
-      // login(values.userId, values.password).then..;
-      console.log(values.userId, values.password);
-      setSubmitting(false);
+      setLoading(true);
+      setTimeout(() => {
+        login(values.userId, values.password)
+          .then(({ data: { authToken } }) => {
+            setLoading(false);
+            console.log(authToken);
+          })
+          .catch((err) => {
+            values.userId = "";
+            values.password = "";
+            alert("로그인 정보 잘못됨");
+          })
+          .finally(() => {
+            setLoading(false);
+            setSubmitting(false);
+          });
+      }, 1000);
     },
   });
 
@@ -50,6 +65,7 @@ const Login = (props) => {
           확인
         </button>
       </form>
+      {loading ? <div>로딩중</div> : null}
     </div>
   );
 };

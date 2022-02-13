@@ -51,7 +51,6 @@ const Registration = (props) => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(values);
       setSubmitting(false);
     },
   });
