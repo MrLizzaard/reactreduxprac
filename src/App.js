@@ -6,6 +6,7 @@ function App() {
   return (
     <>
       <CounterContainer />
+      <hr />
       <TodosContainer />
     </>
   );

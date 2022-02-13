@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { todoActions } from "../modules/todos";
 
@@ -19,7 +19,7 @@ const TodosContainer = () => {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={onSubmit}>
         <input type="text" />
         <button type="submit">제출</button>
@@ -29,7 +29,7 @@ const TodosContainer = () => {
           <Todo key={todo.id} todo={todo} onToggle={onToggleTodo} />
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

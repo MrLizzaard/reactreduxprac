@@ -16,6 +16,7 @@ const CounterContainer = (props) => {
   const onDecrease = () => {
     dispatch(counterActions.decrease());
   };
+
   const onSetDiff = (diff) => {
     dispatch(counterActions.setDiff(diff));
   };
